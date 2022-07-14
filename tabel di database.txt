@@ -1,0 +1,36 @@
+tb_produk 
+	id
+	username
+	password
+
+tb_produk
+	id_Produk
+	nama_produk
+	harga_produk
+	berat_produk
+	stok_produk
+	foto_produk
+	deskripsi_produk
+	kondisi_produk
+
+tb_pembelian_produk
+	id_pembelian_produk
+	id_pembelian
+	id_produk
+	jumlah
+
+tb_ongkir
+	id_ongkir
+	nama_kota
+	tarif
+
+tb_pembelian
+	id_pembelian
+	id_pembeli
+	id_ongkir
+	nama
+	nomer
+	provinsi
+	jalan
+	tanggal_pembelian
+	jumlah_pembelian

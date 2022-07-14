@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#konten .card:hover {
+    box-shadow: 2px 2px 2px 2px rgb(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+#navbarSupportedContent .form-control {
+    font-size: 14px;
+}
+
+#navbarSupportedContent .navbar-nav {
+    text-align: center;
+    font-size: 14px;
+}
+
+@media screen and (max-width:995px) {
+    #navbarSupportedContent .navbar-nav {
+        text-align: center;
+    }
+}

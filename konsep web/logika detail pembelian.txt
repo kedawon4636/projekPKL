@@ -1,0 +1,101 @@
+ketika tbl beli di tekan  -> masukan username -> alamat ->no wa -> produk yang dibeli -> harga -> jumlah produk yang dibeli -> ongkir -> pembayaran -> subtotal
+- > masuk tabel database
+
+
+yang belum
+	table admin yang masih kelihatan di user,
+	tabel admin belum dikasih session,
+	footer tentang kontak
+	sosmed ig, fb
+	 
+
+tb beli 
+	stok
+	
+
+
+tb transaksi/diganti chekout
+	
+
+metod pembayaran
+	subtotal untuk produk
+	subtotal pengirim
+	TOTAL PEMBAYARAN
+
+buat tabel ongkir
+	id ongkir 	int(primary
+	nama kota 	varchar
+	tarif		int
+
+
+tb cekout -> tb pembelian
+		nama
+		nomer
+		alamat
+		nama jalan
+		ongkir
+
+tb produk
+	carosel
+
+TAMPILAN
+	
+
+	REGISTER KURANG MENARIK	
+
+Ipaymu
+	coba bikin link
+	
+
+pencarian navbar belum berfungsi
+tabel transaksi supaya hanya pemebeli tersebut yang bisa melihat
+
+membuat halaman about/contact
+
+ketika beli -> id barang ngikut 
+				-> beli sekarang 
+						id barang
+						harga, nama, berat -> beli sekarang -> id apa yg ngikut? id barang/ id user/ session beli sekarang
+ketika beli sekarang insert into tb pembelian produk
+nanti jumlah pembelian diambil dari value beli produk di tabel a href/insert sebelum beli sekarang.. nanti di cekout tinggal ditampilkan datanya dari tb pembelian produk.
+
+
+
+transaksi + session beli.. dimana cuma yang beli yang bisa lihat transaksi nya,.
+
+sett riwayat.. tampilkan riwayat habis pembelian
+menampilkan jika pembelian 2 produk menampilkan 2 produk pembelian... where id_produk menampikan id_produk sehingga menampilkan barng yg dibelinya 2 produk
+
+interface admin = admin
+
+mencari data produk jersey secara detail
+
+
+tb pembelian1 = tb pembelian1.id_produk
+
+tb produk = tb produk.id_produk
+
+tb ongkir = tb ongkir.id_ongkir
+
+tb pembelian 1 yang diambil 
+tb produk yang diambil harga produk, nama produk
+tb ongkir yang diambil namakota, tarif
+tb pembelian produk yang diambil id pem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+

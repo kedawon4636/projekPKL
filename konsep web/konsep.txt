@@ -1,0 +1,144 @@
+studi kasus => website toko online
+
+catatan = 
+	hanya menampilkan jasa atau produk ysng dijual, seperti foto produk, harga, deskripsi produk, dan informasi
+kontak penjual. jika mau melakukan pembelian bisa menghubungi lewat nomor tlpn yang tercantum
+- kekurangannya tidak bisa melakukan transaksi jual beli didalam web tersebut, melainkan melalui contac si penjual
+
+front end / tampilan 		: HTML dan CSS
+backend / bahasa permrograman 	: PHP
+data base			: Mysql
+web server			: XAMPP
+text editor			: VS code
+
+user / pengguna
+1. Calon Pembeli
+2. Penjual / Admin
+
+Bikin Tabel/tampilan Desain 
+	- mancing
+	- sepak bola
+	- dara
+	- dll
+
+tampilan produk
+	- mancing
+	- dara
+	- sepak bola
+
+bahan jersey
+	- benzema
+	- dll
+
+jika mau desain sendiri hubungi contact di bawah tombol wa
+ cara pembelian
+	- contact wa 
+	- alamat pengiriman lengkap
+	- bukti pembayaran + ongkir jika jauh
+
+pilih desain --> pilih bahan jersey --> harga --> dp/cas
+menghasilkan bukti struk pembayaran.
+
+lokasi toko --> dikasih google map
+
+bagian footer dikasih sosmed contact wa
+
+----------------------------------------------------
+khusus admin
+ crud tapi hasilnya nanti langsung diupload di tampilan index
+ stok barang
+ harga barang
+ barang yang laku dijual
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struktur data base
+
+db_Iwanjersey
+
+#tb_admin
+================================
+1. admin_id		| int (11) primary key auto increment
+2. admin_name		| varchar (50)
+3. username		| varchar (50)
+4. password		| varchar (100)
+5. admin_tlp		| varchar (20)
+6. admin_email		| varchar (50)
+7. admin_addres		| text
+
+#tb_daftar 
+=======================================
+1. user_id		| int (11) primary key auto incremen
+2. user_name		| varchar (50)
+3. password		| varchar (50)
+4. alamat		| text (200)
+5. no_tlfn		| varchar (20)
+
+#tb_daftar_transaksi (opsional)
+======================================
+1. id			| int (11) primary key auton increment
+2. nama barang		| varchar (50)
+3. harga		| varchar (50)
+4. bukti transaksi 	| varchar (100)
+
+
+
+#tb_pengiriman (opsional)
+=======================================
+1. id			| int (11) primary key auto increment
+2. nama			| varchar (50)
+3. alamat		| text (200)
+4. no_tlfn		| varchar (20)
+
+#tb_category
+========================================
+1. category_id		| int (11) primary key auto increment
+2. category_name	| varchar (25)
+
+#tb_product
+=======================================================
+1. product_id		| int (11) primary key auto increment
+2. categery_id		| int (11) foreign key
+3. product_name		| varchar (100)
+4. product_price	| int (11)
+5. product_description	| text
+6. product_image	| varchar (100)
+7. product_status	| tinyin (1)
+8. data_created		| timestamp
+
+
+Halaman akses
+1. registrasi		- daftar/login -> calon pembeli
+			
+
+
+			- dashboard/tampilan untuk user
+			- cara pembelian
+			- data produk
+			_ cara beli/pengiriman
+
+2. Admin		- login
+			- dashboard
+			- profil (update)
+			- data kategori (creat, read, update, delete)
+			- data produk (creat, read, update, delete)
+
+
+3. Calon pembeli	- beranda
+			- produk
+			- detail produk

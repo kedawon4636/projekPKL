@@ -1,0 +1,30 @@
+tombol beli ditekan -> beli.php berisi tentang foto produk, harga nama produk, 
+detail produk -> kondisi = baru
+		 min. Pemesanan = 1 buah
+		 detail produk = tersedia .. warna.. bahan..
+		 ulasan pembeli/comentar pembeli
+		 stok produk
+
+di bawahnya ad tombol beli langsung -> transaksi.php
+transaksi -> barang yang dibeli 
+		tampilan minimaze produk, nama produk, berat, harga, tulis berapa yg dibeli
+	  -> pengiriman dan pembayaran 
+		pilih/masukan alamat
+		pilih pengiriman 
+		pilih pembayaran
+	  -> total pembayaran
+		total harga
+		ongkos kirim
+		total bayar = harga*ongkir
+		tombol bayar
+larikan interface ke navbar transaksi
+	berisi	-> riwayat transaksi
+			nama produk
+			harga
+			ongkir
+			total
+
+
+tabel_produk tambah foto menjadi 3 supaya bisa dicarosel
+
+tb_produk -> kolom deskripsi buat 2, yang 1 buat di interface home dan produk, yang 2 buat ditombol detail

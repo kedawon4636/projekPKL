@@ -1,0 +1,3 @@
+ukuran desktop style="width:17rem; margin-right:7px;"
+
+ukuran mobile style="width:12rem; margin-right:3px;"
