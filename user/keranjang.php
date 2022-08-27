@@ -8,9 +8,9 @@ if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
 }
 
 // cek session
-// echo '<pre>';
-// print_r($_SESSION);
-// echo '</pre>';
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
 ?>
 
 <!-- Page Header Start -->
@@ -27,11 +27,27 @@ if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
 <!-- Page Header End -->
 
 <div class="container">
-    <a href="index.php" class="btn btn-primary">Lanjutkan Belanja >></a>
+    <a href="index.php" class="btn btn-success"><i class="fa-solid fa-cart-plus"></i> Lanjutkan Belanja</a>
 </div>
+<br>
+
+<?php if (empty($_SESSION['coupon'])) { ?>
+          <div class="container text-center">         
+    <div class="alert alert-success alert-dismissible fade show" role="alert"> Masukan kode voucher jika <strong> Ada </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          </div>
+<?php }else{?>
+    <div class="container text-center">         
+    <div class="alert alert-success alert-dismissible fade show" role="alert"> Kode voucher <strong> <?php echo $_SESSION['coupon']['nama'] ?> Berhasil </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          </div>    
+<?php }?>
+
 <!-- Cart Start -->
 <div class="container-fluid pt-5">
-    <div class="row px-xl-5">
+    <div class=" row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-bordered text-center mb-0">
                 <thead class="bg-secondary text-dark">
@@ -45,9 +61,9 @@ if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
                     </tr>
                 </thead>
                 <tbody class="align-middle">
-                    <?php $no = 1;
-                    $subtotal = 0;
-                    ?>
+                    <?php $no = 1; ?>
+                    <?php $totalbelanja = 0; ?>
+
                     <?php foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) : ?>
                         <!-- menampilkan produk yang sedang diperulangkan berdasarkan id produk -->
                         <?php $ambil = mysqli_query($koneksi, "SELECT * FROM tb_produk WHERE id_produk='$id_produk'");
@@ -56,7 +72,7 @@ if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
 
                         // cek id produk
                         // echo "<pre>";
-                        // print_r($pecah);
+                        // print_r($_SESSION['coupon']);
                         // echo "</pre>";
                         ?>
                         <tr>
@@ -73,31 +89,52 @@ if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
                             </td>
                             <td class="align-middle">Rp <?php echo number_format($subharga) ?></td>
                             <td class="align-middle">
-                                <a class="btn btn-sm btn-primary" href="hapus_keranjang.php?id=<?php echo $id_produk ?>"><i class="fa-solid fa-trash"></i></a>
+                                <a class="btn btn-sm btn-primary" onclick="return confirm('yakin ingin menghapus produk?');" href="hapus_keranjang.php?id=<?php echo $id_produk ?>"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
+                        <?php $totalbelanja += $subharga; ?>
                     <?php endforeach ?>
-                    <?php $subtotal += $jumlah; ?>
                 </tbody>
             </table>
         </div>
         <div class="col-lg-4">
             <!-- memberi cek kupon diskon -->
-            <!-- <form class="mb-5" action="">
+            <form class="mb-5" method="post" action="coupon.php">
                 <div class="input-group">
-                    <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Apply Coupon</button>
-                    </div>
+                    <input type="text" name="kode" class="form-control" placeholder="Masukan Kode Voucher">
+                    <button name="coupon" class="btn btn-primary">Pakai</button>
+                    <!-- <div class="input-group-append">
+                        <button name="coupon" class="btn btn-primary">Apply Coupon</button>
+                    </div> -->
+                    <br>
                 </div>
-            </form> -->
+            </form>
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Lanjutkan Order</h4>
+                    <h4 class="font-weight-semi-bold ">Lanjutkan Order</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">Rp <?php echo number_format($totalbelanja) ?></h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Diskon</h6>
+                        <h6 class="font-weight-medium">- Rp <?php echo number_format($_SESSION['coupon']['kredit']) ?></h6>
+                    </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
-                    <a href="login.php" class="btn btn-block btn-primary my-3 py-3">Lanjut Order</a>
-                </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5 class="font-weight-bold">Total</h5>
+                            <h5 class="font-weight-bold"><?php echo number_format($totalbelanja - $_SESSION['coupon']['kredit']) ?></h5>
+                        </div>
+                        <a href="login.php" class="btn btn-primary">cekout</a>
+                        <!-- <button name="checkout" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button> -->
+                    </div>
+                    <!-- tombol checkout -->
+                <!-- <div class="card-footer border-secondary bg-transparent">
+                    <a href="login.php" class="btn btn-block btn-primary my-3 py-3">Check Out</a>
+                </div> -->
             </div>
         </div>
     </div>

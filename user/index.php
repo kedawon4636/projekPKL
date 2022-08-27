@@ -75,9 +75,9 @@ require 'database.php';
                             </ul>
                             <div class="card-footer d-flex justify-content-between border">
 
-                                <a href="detail.php?id=<?php echo $produk['id_produk'] ?>" class="btn text-dark p-0"><i class="fas fa-eye text-primary"></i>View
+                                <a href="detail.php?id=<?php echo $produk['id_produk'] ?>" class="btn text-dark p-0"><i class="fas fa-eye text-primary"></i> View
                                     Detail</a>
-                                <a href="masuk_keranjang.php?id=<?php echo $produk['id_produk']; ?>" class="btn text-dark p-0"><i class="fas fa-shopping-cart text-primary "></i> Keranjang</a>
+                                <a href="masuk_keranjang.php?id=<?php echo $produk['id_produk']; ?>" class="btn text-dark p-0"><i class="fas fa-plus text-primary "></i> Keranjang</a>
                             </div>
                         </div>
                     </div>

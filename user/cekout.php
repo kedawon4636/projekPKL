@@ -12,6 +12,10 @@ if (empty($_SESSION['keranjang'])) {
 // print_r($_SESSION);
 // echo '</pre>';
 
+echo "<pre>";
+print_r($_SESSION['coupon']);
+echo "</pre>";
+
 ?>
 
 <!-- Page Header Start -->
@@ -41,6 +45,7 @@ if (empty($_SESSION['keranjang'])) {
         <div class="col-md-4"></div>
     </div>
 </div>
+
 <!-- Cart Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -111,18 +116,23 @@ if (empty($_SESSION['keranjang'])) {
                     </div>
                     <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">Subtotal</h6>
-                        <h6 class="font-weight-medium">Rp <?php echo number_format($totalbelanja) ?></h6>
+                        <h6 class="font-weight-medium">Rp <?php echo number_format($totalbelanja)?></h6>
                     </div>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">Ongkos Kirim</h6>
                         <?php $ongkir = 30000; ?>
                         <h6 class="font-weight-medium">Rp <?php echo number_format($ongkir); ?></h6>
+                    </div>
+<!-- belum jalan ketika session code tidak ada maka diskon 0 -->
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Diskon</h6>
+                        <h6 class="font-weight-medium">- Rp <?php echo number_format($_SESSION['coupon']['kredit'])?></h6>
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
                         <h5 class="font-weight-bold">Total</h5>
-                        <h5 class="font-weight-bold"><?php echo number_format($totalbelanja + $ongkir) ?></h5>
+                        <h5 class="font-weight-bold"><?php echo number_format($totalbelanja + $ongkir - $_SESSION['coupon']['kredit']) ?></h5>
                     </div>
                 </div>
             </div>
@@ -135,65 +145,40 @@ if (empty($_SESSION['keranjang'])) {
 <div class="container card bg-secondary">
     <form action="" method="post">
         <div>
-
+            <input type="hidden" name="totalbelanja" value="<?= $totalbelanja ?>">
             <h3>Alamat Pengiriman</h3>
+            <label for=""><p class="fw-bolder">Nama Penerima</p></label>
             <input type="text" required name="nama" class="form-control" autocomplete="off" placeholder="Nama Penerima">
             <br>
+            <label for=""><p class="fw-bolder">Nomer Telepon </p></label>
             <input type="number" required name="nomer" class="form-control" autocomplete="off" placeholder="Nomer Telepon">
             <br>
-            <input type="text" class="form-control" required name="provinsi" autocomplete="off" placeholder="Provinsi, Kota, Kecamatan, Kode Pos">
+
+            <label for=""><p class="fw-bolder">Alamat</p></label>
+            <input type="text" class="form-control mt-1" required name="provinsi" autocomplete="off" placeholder="Provinsi">
+            <input type="text" class="form-control mt-1" required name="kota" autocomplete="off" placeholder="Kota / Kabupaten">
+            <input type="text" class="form-control mt-1" required name="kecamatan" autocomplete="off" placeholder="Kecamatan">
+            <input type="number" class="form-control mt-1" required name="kode_pos" autocomplete="off" placeholder="Kode Pos">
             <br>
+            <label for=""><p class="fw-bolder">Nama Jalan, Gedung, No Rumah</p></label>
             <input type="text" required name="jalan" class="form-control" autocomplete="off" placeholder="Nama Jalan, Gedung, No. Rumah">
 
-            <button style="float: right;" type="submit" name="cekout" class="btn btn-lg btn-block btn-primary font-weight-bold my-1 py-3" class="btn btn-primary ">check out >></button>
+            <button style="float: right;" type="submit" name="buat_pesanan" class="btn btn-lg btn-block btn-primary font-weight-bold my-1 py-3" class="btn btn-primary ">Buat Pesanan >></button>
         </div>
     </form>
 </div>
 
 <!-- jika tekan tombol cekout ditekan -->
-<?php if (isset($_POST["cekout"])) {
-    $ongkir = 30000;
-    // id pelanggan/user diambil dari session
-    $idpembeli = $_SESSION['user']['id'];
-    $tanggal_pembelian = date("y-m-d");
-    $jumlah_pembelian = $totalbelanja + $ongkir;
-    // dari form post
-    $nama       = htmlspecialchars($_POST['nama']);
-    $telepon    = $_POST['nomer'];
-    $provinsi   = htmlspecialchars($_POST['provinsi']);
-    $jalan      = htmlspecialchars($_POST['jalan']);
+<?php if (isset($_POST["buat_pesanan"])) {
+   if (buat_pesanan($_POST) > 0 ){
 
-    //  menyimpan ke tabel pembelian
-    mysqli_query($koneksi, "INSERT INTO tb_pembelian (id_pembeli,nama,nomer,provinsi,jalan,tanggal_pembelian,jumlah_pembelian,ongkir) VALUES ('$idpembeli','$nama','$telepon','$provinsi','$jalan','$tanggal_pembelian','$jumlah_pembelian','$ongkir')");
+       // tampilkan ke halaman nota, nota dari pembelian barusan
+       echo "<script>alert('sukses melakukan pembelian')</script>";
+       echo "<script>location='nota.php?id=$id_pembelian_barusan'</script>";
+    }else{
+        echo "<script>alert('gagal melakukan pembelian')</script>";
+   }
 
-    // mendapatkan id barusan
-    $id_pembelian_barusan = $koneksi->insert_id;
-
-    foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) {
-        // mendapatkan data produk berdasarkan id produk
-        $sql = mysqli_query($koneksi, "SELECT * FROM tb_produk WHERE id_produk=$id_produk");
-        $perproduk = mysqli_fetch_assoc($sql);
-
-        $nama_produk = $perproduk['nama_produk'];
-        $harga = $perproduk['harga_produk'];
-        $berat = $perproduk['berat_produk'];
-
-        $subberat = $perproduk['berat_produk'] * $jumlah;
-        // total harga = subharga di tb pembelian produk
-        $totalharga = $perproduk['harga_produk'] * $jumlah;
-
-        mysqli_query($koneksi, "INSERT INTO tb_pembelian_produk VALUES ('','$id_pembelian_barusan', '$id_produk','$jumlah','$nama_produk', '$harga', '$berat', '$subberat', '$totalharga')");
-
-        // skrip update stok
-        mysqli_query($koneksi, "UPDATE tb_produk SET stok_produk=stok_produk -$jumlah WHERE id_produk='$id_produk'");
-    }
-
-    // tampilkan ke halaman nota, nota dari pembelian barusan
-    echo "<script>alert('sukses melakukan pembelian')</script>";
-    echo "<script>location='nota.php?id=$id_pembelian_barusan'</script>";
-
-    // mengkosongkan keranjang belanja
-    unset($_SESSION['keranjang']);
 } ?>
 
 

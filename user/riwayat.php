@@ -8,6 +8,13 @@ if (!isset($_SESSION['user']) or empty($_SESSION['user'])) {
     echo "<script>location='login.php'</script>";
     exit();
 }
+// belum bisa ketika login langsung dilarikan ke sini
+// if (empty($_SESSION['keranjang']) or !isset($_SESSION['keranjang'])) {
+//     echo "<script>alert('Riwayat belanja kosong, silahkan lakukan pembelian')</script>";
+//     echo "<script>location='index.php'</script>";
+// }
+// jika tdk ada session keranjang larikan ke index.php
+// belum jalan
 
 ?>
 <!-- <pre><?php //print_r($_SESSION) 

@@ -26,11 +26,15 @@ if (isset($_POST['edit'])) {
 
     $namafoto = $_FILES['foto']['name'];
     $lokasifoto = $_FILES['foto']['tmp_name'];
+
+    $namafot = $_FILES['foto_belakang']['name'];
+    $lokasifot = $_FILES['foto_belakang']['tmp_name'];
     // jika foto dirubah
-    if (!empty($lokasifoto)) {
+    if (!empty($lokasifoto && $lokasifot)) {
         move_uploaded_file($lokasifoto, "../foto_produk/$namafoto");
+        move_uploaded_file($lokasifot, "../foto_belakang/$namafot");
         // update produk
-        mysqli_query($koneksi, "UPDATE tb_produk SET nama_produk='$nama', harga_produk='$harga', berat_produk='$berat', stok_produk='$stok', foto_produk='$namafoto', deskripsi_produk='$deskripsi'
+        mysqli_query($koneksi, "UPDATE tb_produk SET nama_produk='$nama', harga_produk='$harga', berat_produk='$berat', stok_produk='$stok', foto_produk='$namafoto', foto_belakang='$namafot', deskripsi_produk='$deskripsi'
         WHERE id_produk='$id'");
     } else {
         mysqli_query($koneksi, "UPDATE tb_produk SET nama_produk='$nama', harga_produk='$harga', berat_produk='$berat', stok_produk='$stok', deskripsi_produk='$deskripsi' WHERE id_produk='$id'");
@@ -66,10 +70,13 @@ if (isset($_POST['edit'])) {
         </div>
         <div class="form-group" style="margin-top:5px;">
             <img src="../foto_produk/<?php echo $pecah['foto_produk']; ?>" width="100">
+            <img src="../foto_belakang/<?php echo $pecah['foto_belakang']; ?>" width="100">
         </div>
         <div class="form-group">
-            <label for="">Ganti Foto</label>
+            <label for="">Ganti Foto Depan</label>
             <input type="file" name="foto" class="form-control">
+            <label for="">Ganti Foto Belakang</label>
+            <input type="file" name="foto_belakang" class="form-control">
         </div>
         <div class="form-group">
             <label for="">Deskripsi Produk</label>

@@ -18,23 +18,33 @@ require 'database.php';
 <!-- Page Header End -->
 <?php $id_produk =  $_GET['id'];
 $ambil = mysqli_query($koneksi, "SELECT * FROM tb_produk WHERE id_produk='$id_produk'");
-$pecah = mysqli_fetch_assoc($ambil); ?> ?>
+$pecah = mysqli_fetch_assoc($ambil); ?>
 <!-- Shop Detail Start -->
+
+
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
         <div class="col-lg-5 pb-5">
-            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner border">
                     <div class="carousel-item active">
                         <img class="w-100 h-100" src="foto_produk/<?php echo $pecah['foto_produk']; ?>" alt="Image">
                     </div>
+                    <!-- <div class="carousel-item">
+                        <img src="PRODUK/con1.jpg" class="w-100 h-100" alt="Image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="PRODUK/con2.jpg" class="h-100 w-100" alt="Image">
+                    </div> -->
                 </div>
-                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                    <i class="fa fa-2x fa-angle-left text-dark"></i>
-                </a>
-                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                    <i class="fa fa-2x fa-angle-right text-dark"></i>
-                </a>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
 
@@ -53,30 +63,25 @@ $pecah = mysqli_fetch_assoc($ambil); ?> ?>
             <h3 class="font-weight-semi-bold mb-4">Rp <?php echo number_format($pecah['harga_produk']); ?></h3>
             <p class=""><?php echo $pecah['deskripsi_produk']; ?></p>
             <p class="text-dark font-weight-medium mb-0 mr-3">Stok : <?php echo $pecah['stok_produk'] ?></p>
-            <p class="text-dark font-weight-medium mb-2 mr-3">Berat : <?php echo number_format($pecah['berat_produk']) ?></p>
+            <p class="text-dark font-weight-medium mb-2 mr-3">Berat : <?php echo number_format($pecah['berat_produk']) ?> Gram</p>
+
+            <div class="col-sm-10">
+            <select class="form-control" name="size" id="fakultas">
+            <option value="">- Pilih Ukuran -</option>
+            <!-- <option value="M" <?php if ($fakultas == "Sistem Informasi") echo "selected" ?>> M
+            </option> -->
+            <option value="M"> M</option>
+            <option value="L"> L</option>
+            <option value="XL"> XL</option>
+            <option value="XXL"> XXL</option>
+            </select>
+            </div>
+            <br>
             <div class="d-flex mb-3">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                 <form method="post">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-2" name="size">
-                        <label class="custom-control-label" for="size-2">S</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-3" name="size">
-                        <label class="custom-control-label" for="size-3">M</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-4" name="size">
-                        <label class="custom-control-label" for="size-4">L</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-5" name="size">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                    </div>
-                    <br>
                     <div class="form-group">
                         <div class="input-group">
-                            <input style="width:150px; height:40px" required type="number" min="1" name="jumlah" max="<?php echo $pecah['stok_produk']; ?>" placeholder="Beli Produk">
+                            <input class="form-control" style="width:150px; height:40px" required type="number" min="1" name="jumlah" max="<?php echo $pecah['stok_produk']; ?>" placeholder="Beli Produk">
                             <button class="btn btn-primary" name="beli">Beli</button>
                         </div>
                     </div>

@@ -47,8 +47,11 @@ $sql = mysqli_query($koneksi, "SELECT * FROM tb_pembelian_produk JOIN tb_produk 
             </div>
             <div class="col-md-6">
                 <h3>Nama User / Pelanggan</h3>
-                <strong><?php echo $pecah['username'] ?></strong><br>
+                <strong>Nama : <?php echo $pecah['username'] ?></strong><br>
                 Alamat : <?php echo $pecah['provinsi'] ?><br>
+                Kota  : <?php echo $pecah['kota'] ?><br>
+                Kecamatan : <?php echo $pecah['kecamatan'] ?> <br>
+                Kode Pos : <?php echo $pecah['kode_pos'] ?> <br>
                 Jalan : <?php echo $pecah['jalan'] ?>
             </div>
         </table>

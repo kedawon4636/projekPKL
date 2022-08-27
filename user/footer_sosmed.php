@@ -5,9 +5,9 @@
             </a>
             <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum
                 dolore amet erat.</p>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>  Jl.Raya Kedawon Utara Kab. Brebes</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i> fendyjr@gmail.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i> 0838 6166 6036</p>
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
@@ -22,10 +22,10 @@
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">Contact Me</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="tombol" href="https://www.facebook.com/khamid.khamid.374"><i class="fab fa-facebook-f"></i> iwan Jersey</a>
+                        <a class="tombol" href="https://www.facebook.com/ioneenterprice.enterprice"><i class="fab fa-facebook-f"></i> iwan Jersey</a>
                         <a class="tombol" href="https://www.instagram.com/khamid_efendi/"><i class="fab fa-instagram"></i> @iwan Jersey</a>
-                        <a class="tombol" href=""><i class="fab fa-youtube"></i> iwan Jersey</a>
-                        <a class="tombol" href=""><i class="fab fa-whatsapp"></i> 081228384735</a>
+                        <a class="tombol" href="https://www.youtube.com/channel/UCtKkd7wm47ri84XZRSf6M8w"><i class="fab fa-youtube"></i> iwan Jersey</a>
+                        <a class="tombol" href="https://wa.wizard.id/c73326"><i class="fab fa-whatsapp"></i> 081228384735</a>
                     </div>
                 </div>
             </div>

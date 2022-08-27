@@ -1,0 +1,16 @@
+Spesifikasi;ukuran L
+
+Lebar Dada 52cm / Lingkar Dada 104cm
+Lebar Bahu 46cm
+Panjang Depan 70cm
+Panjang Belakang 78cm
+Panjang Dari Ketiak ketangan 54cm
+Lingkar tangan 20cm
+
+spesifikasi : ukuran xl
+Lebar Dada 58cm / Lingkar Dada 116cm
+Lebar Bahu 47cm
+Panjang Depan 70cm
+Panjang Belakang 78cm
+Panjang Dari Ketiak ketangan 58cm
+Lingkar tangan 22cm
